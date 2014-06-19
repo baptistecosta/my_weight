@@ -1,0 +1,24 @@
+<h1>Read</h1>
+<table class="table">
+	<tr>
+		<th>ID</th>
+		<th>Created</th>
+		<th>Email address</th>
+		<th>Password</th>
+		<th>Actions</th>
+	</tr>
+	<?php foreach ($users as $user) { ?>
+		<tr>
+			<td><?= $user->id; ?></td>
+			<td><?= $user->created; ?></td>
+			<td><?= $user->emailAddress; ?></td>
+			<td><?= $user->password; ?></td>
+			<td>
+				<a href="/Statistic/delete/<?= $user->id ?>">Delete</a>
+			</td>
+		</tr>
+	<?php } ?>
+</table>
+
+<?php
+var_dump($users);

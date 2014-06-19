@@ -1,0 +1,41 @@
+<h1>User profile</h1>
+<legend></legend>
+<h2>Info</h2>
+<div class="row">
+	<div class="form-group col-lg-6">
+		<label>Username</label>
+		<input class="form-control input-lg" type="text" value="<?= $user->getUsername(); ?>" disabled/>
+	</div>
+	<div class="form-group col-lg-6">
+		<label>Email address</label>
+		<input class="form-control input-lg" type="text" value="<?= $user->getEmailAddress(); ?>" disabled/>
+	</div>
+</div>
+
+<h2>Statistics</h2>
+<table class="table table-hover table-responsive">
+	<tr>
+		<th>ID</th>
+		<th>Date</th>
+		<th>Weight</th>
+		<th>Muscle Mass</th>
+		<th>Body Fat</th>
+		<th>Body Water</th>
+		<th>Action</th>
+	</tr>
+	<?php foreach ($user->getStatistics() as $statistic) { ?>
+		<tr>
+			<td><?= $statistic->getId(); ?></td>
+			<td><?= $statistic->getDate()->format('d/m/Y'); ?></td>
+			<td><?= $statistic->getWeight(); ?> kg</td>
+			<td><?= $statistic->getMuscleMass(); ?> %</td>
+			<td><?= $statistic->getBodyFat(); ?> %</td>
+			<td><?= $statistic->getBodyWater(); ?> %</td>
+			<td>
+				<a href="/Statistic/delete/<?= $statistic->getId() ?>">Delete</a>
+			</td>
+		</tr>
+	<?php } ?>
+</table>
+<?php
+//var_dump($user);
