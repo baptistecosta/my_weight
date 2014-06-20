@@ -6,6 +6,8 @@ use Users\Entity\User as UserEntity;
 use Users\Filter\UserFilter;
 use Users\Form\UserForm;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\EventManager\EventManager;
+use Zend\EventManager\EventManagerAwareInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Session\SessionManager;
 use Zend\View\Model\ViewModel;
@@ -15,13 +17,6 @@ class UserController extends AbstractActionController {
 	private $userTable;
 	private $entityManager;
 
-	function getEntityManager() {
-		if (!$this->entityManager) {
-			$this->entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-		}
-		return $this->entityManager;
-	}
-
 	function indexAction() {
 		return new ViewModel([
 			'users' => $this->getEntityManager()->getRepository('Users\Entity\User')->findAll()
@@ -30,6 +25,9 @@ class UserController extends AbstractActionController {
 
 	function getAction() {
 		$userId = $this->params('id');
+
+		// Trigger event
+		$this->getEventManager()->trigger('get', null, ['userId' => $userId]);
 
 		// One way
 		$user = $this->getEntityManager()->find('Users\Entity\User', $userId);
@@ -159,4 +157,11 @@ class UserController extends AbstractActionController {
 		return $this->userTable;
 	}
 
+
+	function getEntityManager() {
+		if (!$this->entityManager) {
+			$this->entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+		}
+		return $this->entityManager;
+	}
 }

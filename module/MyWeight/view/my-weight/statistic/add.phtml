@@ -1,0 +1,39 @@
+<?php
+$title = "Add new statistic";
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title); ?></h1>
+<?php
+$form->setAttribute('action', $this->url('statistic', ['action' => 'add']));
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<div>
+	<?= $this->formHidden($form->get('id')); ?>
+</div>
+<div class="row">
+	<div class="form-group col-lg-3">
+		<label>Weight (kg)</label>
+		<?= $this->formRow($form->get('weight')); ?>
+	</div>
+	<div class="form-group col-lg-3">
+		<label>Muscle Mass (%)</label>
+		<?= $this->formRow($form->get('muscleMass')); ?>
+	</div>
+	<div class="form-group col-lg-3">
+		<label>Body Fat (%)</label>
+		<?= $this->formRow($form->get('bodyFat')); ?>
+	</div>
+	<div class="form-group col-lg-3">
+		<label>Body Water (%)</label>
+		<?= $this->formRow($form->get('bodyWater')); ?>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-lg-12">
+		<?= $this->formSubmit($form->get('submit')); ?>
+	</div>
+</div>
+<div>
+	<?= $this->form()->closeTag(); ?>
+</div>
