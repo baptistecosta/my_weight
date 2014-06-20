@@ -38,7 +38,8 @@ return [
 	'view_manager' => [
 		'template_path_stack' => [
 			'users' => __DIR__ . '/../view'
-		]
+		],
+		'display_exception' => true
 	],
 	'doctrine' => [
 		'driver' => [
@@ -51,6 +52,18 @@ return [
 				'drivers' => [
 					'Users\Entity' => 'application_entities'
 				]
+			]
+		],
+		'authentication' => [
+			'orm_default' => [
+				'object_manager' => 'Doctrine\ORM\EntityManager',
+				'identity_class' => 'Users\Entity\User',
+				'identity_property' => 'emailAddress',
+				'credential_property' => 'password',
+				'credential_callable' => function(Users\Entity\User $user, $givenPassword) {
+					$hash = md5('a57xFokFEjx543dcdPk65asdmlkviJFdIH5c4s3547cd' . $givenPassword);
+					return ($user->getPassword() === $hash && $user->getIsActive());
+				}
 			]
 		]
 	]

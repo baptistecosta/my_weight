@@ -5,7 +5,7 @@ return [
 		'ZendDeveloperTools',
 		'DoctrineModule',
 		'DoctrineORMModule',
-		'Application',
+		'MyWeight',
 		'Users'
 	],
 	'module_listener_options' => [

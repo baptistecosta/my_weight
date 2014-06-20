@@ -30,13 +30,21 @@ class UserForm extends Form {
 			]
 		]);
 		$this->add([
+			'type' => 'Zend\Form\Element\Checkbox',
+			'name' => 'rememberMe',
+			'options' => [
+//				'label' => 'Remember me',
+				'use_hidden_element' => true,
+				'checked_value' => 1,
+				'unchecked_value' => 0
+			]
+		]);
+		$this->add([
 			'name' => 'submit',
 			'type' => 'Submit',
 			'attributes' => [
-				'value' => 'Go',
+				'value' => 'Sign in',
 				'id' => 'submitButton',
-			],
-			'attributes' => [
 				'class' => 'form-control btn-primary input-lg'
 			]
 		]);

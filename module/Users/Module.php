@@ -2,12 +2,9 @@
 
 namespace Users;
 
-use Application\Model\Statistic;
-use Application\Model\StatisticTable;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\TableGateway;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+
 
 class Module {
 
@@ -16,12 +13,22 @@ class Module {
 	}
 
 	public function getAutoloaderConfig() {
-		return array(
+		return [
 			'Zend\Loader\StandardAutoloader' => [
 				'namespaces' => [
 					__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
 				],
 			],
-		);
+		];
+	}
+
+	public function getServiceConfig() {
+		return [
+			'factories' => [
+				'Zend\Authentication\AuthenticationService' => function($serviceManager) {
+					return $serviceManager->get('doctrine.authenticationservice.orm_default');
+				}
+			]
+		];
 	}
 }

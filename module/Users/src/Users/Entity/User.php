@@ -41,7 +41,12 @@ class User {
 	protected $created;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Application\Entity\Statistic", mappedBy="user", cascade={"remove"})
+	 * @ORM\Column(type="boolean", options={"default"=false})
+	 */
+	protected $isActive = false;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="MyWeight\Entity\Statistic", mappedBy="user", cascade={"remove"})
 	 * @ORM\JoinColumn(name="userId", referencedColumnName="id")
 	 */
 	protected $statistics;
@@ -93,5 +98,12 @@ class User {
 	}
 	public function setUsername($username) {
 		$this->username = $username;
+	}
+
+	public function getIsActive() {
+		return $this->isActive;
+	}
+	public function setIsActive($isActive) {
+		$this->isActive = $isActive;
 	}
 }
