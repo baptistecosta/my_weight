@@ -2,6 +2,7 @@
 <table class="table table-condensed table-hover">
 	<tr>
 		<th>ID</th>
+		<th>Role</th>
 		<th>Created</th>
 		<th>Email address</th>
 		<th>Actions</th>
@@ -9,9 +10,12 @@
 	<?php foreach ($users as $user) { ?>
 		<tr>
 			<td><a href="/users/user/get/<?= $user->getId(); ?>"><?= $user->getId(); ?></a></td>
+			<td><?= $user->getRole()->getName(); ?></td>
 			<td><?= $user->getCreated()->format('Y-m-d H:i:s'); ?></td>
 			<td><?= $user->getEmailAddress(); ?></td>
 			<td><a href="/Statistic/delete/<?= $user->getId(); ?>">Delete</a></td>
 		</tr>
 	<?php } ?>
 </table>
+<?php
+var_dump($users[0]->getRole());

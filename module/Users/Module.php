@@ -23,7 +23,7 @@ class Module {
 		$sharedEventManager->attach(['Users\Controller\UserController', 'MyWeight\Controller\SandBoxController'], ['get', 'index'], function($e) {
 			$eventName = $e->getName();
 			$eventParams = $e->getParams();
-			var_dump([$eventName, $eventParams]);
+//			var_dump([$eventName, $eventParams]);
 		});
 	}
 

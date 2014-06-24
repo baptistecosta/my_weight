@@ -3,6 +3,12 @@
 <h2>Info</h2>
 <div class="row">
 	<div class="form-group col-lg-6">
+		<label>Role</label>
+		<input class="form-control input-lg" type="text" value="<?= $user->getRole()->getName(); ?>" disabled/>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-lg-6">
 		<label>Username</label>
 		<input class="form-control input-lg" type="text" value="<?= $user->getUsername(); ?>" disabled/>
 	</div>

@@ -5,6 +5,7 @@ namespace Users\Controller;
 use Users\Entity\User as UserEntity;
 use Users\Filter\UserFilter;
 use Users\Form\UserForm;
+use Zend\Authentication\AuthenticationService;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerAwareInterface;
@@ -18,6 +19,15 @@ class UserController extends AbstractActionController {
 	private $entityManager;
 
 	function indexAction() {
+
+//		$auth = new AuthenticationService();
+		$authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		if (!$authService->hasIdentity()) {
+			return $this->redirect()->toRoute('home');
+		}
+
+		$identity = $authService->getIdentity();
+
 		return new ViewModel([
 			'users' => $this->getEntityManager()->getRepository('Users\Entity\User')->findAll()
 		]);
@@ -33,26 +43,26 @@ class UserController extends AbstractActionController {
 		$user = $this->getEntityManager()->find('Users\Entity\User', $userId);
 
 		// Or another
-		$qb = $this->getEntityManager()->createQueryBuilder();
-		$qb->select('u');
-		$qb->from('Users\Entity\User', 'u');
-		$qb->leftJoin('MyWeight\Entity\Statistic', 's', 'WITH', 'u.id = s.user');
-		$qb->where('u.id = :userId');
-		$qb->setParameter('userId', $userId);
-		$q = $qb->getQuery();
-		$user = $q->getSingleResult();
+//		$qb = $this->getEntityManager()->createQueryBuilder();
+//		$qb->select('u');
+//		$qb->from('Users\Entity\User', 'u');
+//		$qb->leftJoin('MyWeight\Entity\Statistic', 's', 'WITH', 'u.id = s.user');
+//		$qb->where('u.id = :userId');
+//		$qb->setParameter('userId', $userId);
+//		$q = $qb->getQuery();
+//		$user = $q->getSingleResult();
 
 		// Or another
-		$user = $this
-			->getEntityManager()
-			->createQuery('
-				SELECT u
-	    		FROM Users\Entity\User u
-	    		LEFT JOIN MyWeight\Entity\Statistic s WITH u.id = s.user
-	    		WHERE u.id = :userId
-	    	')
-			->setParameters(['userId' => $userId])
-			->getSingleResult();
+//		$user = $this
+//			->getEntityManager()
+//			->createQuery('
+//				SELECT u
+//	    		FROM Users\Entity\User u
+//	    		LEFT JOIN MyWeight\Entity\Statistic s WITH u.id = s.user
+//	    		WHERE u.id = :userId
+//	    	')
+//			->setParameters(['userId' => $userId])
+//			->getSingleResult();
 
 		return new ViewModel([
 			'user' => $user

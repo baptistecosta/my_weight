@@ -52,6 +52,12 @@ class User {
 	protected $statistics;
 
 	/**
+	 * @ORM\ManyToOne(targetEntity="Users\Entity\Role", inversedBy="role")
+	 * @ORM\JoinColumn(name="roleId", referencedColumnName="id")
+	 */
+	protected $role = 1;
+
+	/**
 	 * @ORM\PrePersist
 	 */
 	function onPrePersist() {
@@ -105,5 +111,12 @@ class User {
 	}
 	public function setIsActive($isActive) {
 		$this->isActive = $isActive;
+	}
+
+	public function getRole() {
+		return $this->role;
+	}
+	public function setRole($role) {
+		$this->role = $role;
 	}
 }
