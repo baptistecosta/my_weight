@@ -19,15 +19,6 @@ class UserController extends AbstractActionController {
 	private $entityManager;
 
 	function indexAction() {
-
-//		$auth = new AuthenticationService();
-		$authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
-		if (!$authService->hasIdentity()) {
-			return $this->redirect()->toRoute('home');
-		}
-
-		$identity = $authService->getIdentity();
-
 		return new ViewModel([
 			'users' => $this->getEntityManager()->getRepository('Users\Entity\User')->findAll()
 		]);

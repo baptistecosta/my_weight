@@ -3,8 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
-
+        <?php echo $this->headTitle('MyWeight')->setAutoEscape(false) ?>
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
@@ -41,13 +40,16 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-							<a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home'); ?></a>
+						<li class="active"><a
+								href="<?php echo $this->url('home'); ?>"><?php echo $this->translate('Home'); ?></a>
 						</li>
-                        <li class="active">
+						<li>
 							<a href="/users/user/index"><?php echo $this->translate('Users'); ?></a>
 						</li>
-                    </ul>
+						<li>
+							<a href="<?= $this->url('statistic'); ?>"><?php echo $this->translate('Statistics'); ?></a>
+						</li>
+					</ul>
                 </div>
             </div>
         </nav>

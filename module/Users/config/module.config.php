@@ -32,7 +32,17 @@ return [
 						]
 					]
 				]
-			]
+			],
+			'login' => [
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => [
+					'route' => '/login',
+					'defaults' => [
+						'controller' => 'Users\Controller\User',
+						'action' => 'login',
+					],
+				],
+			],
 		]
 	],
 	'view_manager' => [

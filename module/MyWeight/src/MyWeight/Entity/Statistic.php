@@ -8,6 +8,7 @@ use Users\Entity\User;
 /**
  * @ORM\Entity
  * @ORM\Table(name="Statistics")
+ * @ORM\HasLifecycleCallbacks
  */
 class Statistic {
 
@@ -48,6 +49,13 @@ class Statistic {
 	 * @ORM\Column(type="decimal", precision=10, scale=2)
 	 */
 	protected $bodyWater;
+
+	/**
+	 * @ORM\PrePersist
+	 */
+	function onPrePersist() {
+		$this->date = new \DateTime();
+	}
 
 	public function getId() {
 		return $this->id;

@@ -11,15 +11,15 @@
 	</tr>
 	<?php foreach ($statistics as $statistic) { ?>
 		<tr>
-			<td><?= $statistic->id; ?></td>
-			<td><?= $statistic->date; ?></td>
-			<td><?= $statistic->userId; ?></td>
-			<td><?= $statistic->weight; ?> kg</td>
-			<td><?= $statistic->muscleMass; ?> %</td>
-			<td><?= $statistic->bodyFat; ?> %</td>
-			<td><?= $statistic->bodyWater; ?> %</td>
+			<td><?= $statistic->getId(); ?></td>
+			<td><?= $statistic->getDate()->format('Y-m-d H:i:s'); ?></td>
+			<td><?= $statistic->getUser()->getId(); ?></td>
+			<td><?= $statistic->getWeight(); ?> kg</td>
+			<td><?= $statistic->getMuscleMass(); ?> %</td>
+			<td><?= $statistic->getBodyFat(); ?> %</td>
+			<td><?= $statistic->getBodyWater(); ?> %</td>
 			<td>
-				<a href="/Statistic/delete/<?= $statistic->id ?>">Delete</a>
+				<a href="/Statistic/delete/<?= $statistic->getId(); ?>">Delete</a>
 			</td>
 		</tr>
 	<?php } ?>

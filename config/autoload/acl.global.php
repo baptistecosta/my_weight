@@ -3,14 +3,26 @@
 return [
 	'acl' => [
 		'roles' => [
-			'regular' => null,
-			'registered' => 'regular',
+			'guest' => null,
+			'registered' => 'guest',
 			'admin' => 'registered'
 		],
 		'resources' => [
 			'allow' => [
+				'MyWeight\Controller\Index' => [
+					'all' => [
+						'guest'
+					]
+				],
+				'MyWeight\Controller\Statistic' => [
+					'index' => 'admin',
+					'add' => 'registered'
+				],
 				'Users\Controller\User' => [
-					'create' => 'regular'
+					'login' => 'guest',
+					'logout' => 'guest',
+					'index' => 'admin',
+					'get' => 'registered'
 				]
 			]
 		]

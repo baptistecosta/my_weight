@@ -36,8 +36,8 @@ class Role {
 		$this->id = $id;
 	}
 
-	public function getName($upperCaseFirst = true) {
-		return $upperCaseFirst ? ucfirst($this->name) : $this->name;
+	public function getName() {
+		return $this->name;
 	}
 	public function setName($name) {
 		$this->name = $name;
