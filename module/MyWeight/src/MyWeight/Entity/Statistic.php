@@ -20,7 +20,7 @@ class Statistic {
 	protected $id;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Users\Entity\User", inversedBy="statistics", cascade={"remove"})
+	 * @ORM\ManyToOne(targetEntity="Users\Entity\User", inversedBy="statistics")
 	 * @ORM\JoinColumn(name="userId", referencedColumnName="id")
 	 */
 	protected $user;
@@ -54,7 +54,7 @@ class Statistic {
 	 * @ORM\PrePersist
 	 */
 	function onPrePersist() {
-		$this->date = new \DateTime();
+//		$this->date = new \DateTime();
 	}
 
 	public function getId() {
@@ -85,17 +85,23 @@ class Statistic {
 		$this->weight = $weight;
 	}
 
-	public function getMuscleMass() {
+	public function getMuscleMassPercentage() {
 		return $this->muscleMass;
 	}
-	public function setMuscleMass($muscleMass) {
+	public function setMuscleMassPercentage($muscleMass) {
 		$this->muscleMass = $muscleMass;
 	}
+	public function getMuscleMass() {
+		return $this->muscleMass * $this->weight / 100;
+	}
 
-	public function getBodyFat() {
+	public function getBodyFatPercentage() {
 		return $this->bodyFat;
 	}
-	public function setBodyFat($bodyFat) {
+	public function getBodyFat() {
+		return $this->bodyFat * $this->weight / 100;
+	}
+	public function setBodyFatPercentage($bodyFat) {
 		$this->bodyFat = $bodyFat;
 	}
 

@@ -1,47 +1,63 @@
 <h1>User profile</h1>
 <legend></legend>
-<h2>Info</h2>
-<div class="row">
-	<div class="form-group col-lg-6">
-		<label>Role</label>
-		<input class="form-control input-lg" type="text" value="<?= $user->getRole()->getName(); ?>" disabled/>
-	</div>
-</div>
-<div class="row">
-	<div class="form-group col-lg-6">
-		<label>Username</label>
-		<input class="form-control input-lg" type="text" value="<?= $user->getUsername(); ?>" disabled/>
-	</div>
-	<div class="form-group col-lg-6">
-		<label>Email address</label>
-		<input class="form-control input-lg" type="text" value="<?= $user->getEmailAddress(); ?>" disabled/>
-	</div>
-</div>
 
-<h2>Statistics</h2>
-<table class="table table-hover table-responsive">
-	<tr>
-		<th>ID</th>
-		<th>Date</th>
-		<th>Weight</th>
-		<th>Muscle Mass</th>
-		<th>Body Fat</th>
-		<th>Body Water</th>
-		<th>Action</th>
-	</tr>
-	<?php foreach ($user->getStatistics() as $statistic) { ?>
-		<tr>
-			<td><?= $statistic->getId(); ?></td>
-			<td><?= $statistic->getDate()->format('d/m/Y'); ?></td>
-			<td><?= $statistic->getWeight(); ?> kg</td>
-			<td><?= $statistic->getMuscleMass(); ?> %</td>
-			<td><?= $statistic->getBodyFat(); ?> %</td>
-			<td><?= $statistic->getBodyWater(); ?> %</td>
-			<td>
-				<a href="/Statistic/delete/<?= $statistic->getId() ?>">Delete</a>
-			</td>
-		</tr>
-	<?php } ?>
-</table>
+<div class="row">
+	<div class="col-lg-2">
+		<h2>Info</h2>
+
+		<div class="row">
+			<div class="form-group col-lg-12">
+				<label>Username</label>
+				<input class="form-control input-sm" type="text" value="<?= $user->getUsername(); ?>" disabled/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-12">
+				<label>Role</label>
+				<input class="form-control input-sm" type="text" value="<?= $user->getRole()->getName(); ?>" disabled/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-12">
+				<label>Email address</label>
+				<input class="form-control input-sm" type="text" value="<?= $user->getEmailAddress(); ?>" disabled/>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-10">
+		<h2>
+			Statistics
+			<a href="/Statistic/add" class="pull-right">Add</a>
+		</h2>
+		<table class="table table-hover table-responsive table-condensed">
+			<tr>
+				<th>ID</th>
+				<th>Date</th>
+				<th>Wkg</th>
+				<th>MM%</th>
+				<th>MMkg</th>
+				<th>BF%</th>
+				<th>BFkg</th>
+				<th>BW%</th>
+				<th>Action</th>
+			</tr>
+			<?php foreach ($user->getStatistics() as $statistic) { ?>
+				<tr>
+					<td><?= $statistic->getId(); ?></td>
+					<td><?= $statistic->getDate()->format('d/m/Y'); ?></td>
+					<td><?= $statistic->getWeight(); ?></td>
+					<td><?= number_format($statistic->getMuscleMassPercentage(), 1); ?></td>
+					<td><?= number_format($statistic->getMuscleMass(), 1); ?></td>
+					<td><?= number_format($statistic->getBodyFatPercentage(), 1); ?></td>
+					<td><?= number_format($statistic->getBodyFat(), 1); ?></td>
+					<td><?= $statistic->getBodyWater(); ?></td>
+					<td>
+						<a href="/Statistic/delete/<?= $statistic->getId() ?>">Delete</a>
+					</td>
+				</tr>
+			<?php } ?>
+		</table>
+	</div>
+</div>
 <?php
 //var_dump($user);

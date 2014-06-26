@@ -2,7 +2,9 @@
 
 namespace MyWeight\Controller;
 
+use DateTime;
 use MyWeight\Filter\StatisticFilter;
+use Users\Entity\User;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use MyWeight\Entity\Statistic;
@@ -34,16 +36,19 @@ class StatisticController extends AbstractActionController {
 
 			if ($form->isValid()) {
 				$statistic = new Statistic();
+				$statistic->setDate(new DateTime($data['created']));
 				$statistic->setWeight($data['weight']);
-				$statistic->setBodyFat($data['bodyFat']);
+				$statistic->setBodyFatPercentage($data['bodyFat']);
 				$statistic->setBodyWater($data['bodyWater']);
-				$statistic->setMuscleMass($data['muscleMass']);
+				$statistic->setMuscleMassPercentage($data['muscleMass']);
 				$statistic->setUser($user);
 				$this->getEntityManager()->persist($statistic);
 				$this->getEntityManager()->flush();
 
-				return $this->redirect()->toRoute('statistic');
+				return $this->redirect()->toUrl('/users/user/get/' . $user->getId());
 			}
+		} else {
+//			$form->get('created')->setValue((new DateTime())->format('Y-m-d'));
 		}
 		return ['form' => $form];
 	}
@@ -53,11 +58,14 @@ class StatisticController extends AbstractActionController {
 
 	public function deleteAction() {
 		$id = (int)$this->params()->fromRoute('id', 0);
-		if (!$id) {
+
+		if (!$statistic = $this->getEntityManager()->find('MyWeight\Entity\Statistic', $id)) {
 			return $this->redirect()->toRoute('statistic');
 		}
-		$this->getStatisticTable()->deleteStatistic($id);
-		return $this->redirect()->toRoute('statistic');
+		$this->getEntityManager()->remove($statistic);
+		$this->getEntityManager()->flush();
+
+		return $this->redirect()->toUrl($this->getRequest()->getHeader('Referer')->getUri());
 	}
 
 	function getEntityManager() {

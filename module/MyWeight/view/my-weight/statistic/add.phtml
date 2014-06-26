@@ -13,12 +13,14 @@ echo $this->form()->openTag($form);
 </div>
 <div class="row">
 	<div class="form-group col-lg-3">
+		<label>Date de création</label>
+		<?= $this->formRow($form->get('created')); ?>
+	</div>
+</div>
+<div class="row">
+	<div class="form-group col-lg-3">
 		<label>Weight (kg)</label>
 		<?= $this->formRow($form->get('weight')); ?>
-	</div>
-	<div class="form-group col-lg-3">
-		<label>Muscle Mass (%)</label>
-		<?= $this->formRow($form->get('muscleMass')); ?>
 	</div>
 	<div class="form-group col-lg-3">
 		<label>Body Fat (%)</label>
@@ -27,6 +29,10 @@ echo $this->form()->openTag($form);
 	<div class="form-group col-lg-3">
 		<label>Body Water (%)</label>
 		<?= $this->formRow($form->get('bodyWater')); ?>
+	</div>
+	<div class="form-group col-lg-3">
+		<label>Muscle Mass (%)</label>
+		<?= $this->formRow($form->get('muscleMass')); ?>
 	</div>
 </div>
 <div class="row">

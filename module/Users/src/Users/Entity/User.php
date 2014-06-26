@@ -48,6 +48,7 @@ class User {
 	/**
 	 * @ORM\OneToMany(targetEntity="MyWeight\Entity\Statistic", mappedBy="user", cascade={"remove"})
 	 * @ORM\JoinColumn(name="userId", referencedColumnName="id")
+	 * @ORM\OrderBy({"date" = "DESC"})
 	 */
 	protected $statistics;
 

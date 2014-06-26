@@ -15,8 +15,8 @@
 			<td><?= $statistic->getDate()->format('Y-m-d H:i:s'); ?></td>
 			<td><?= $statistic->getUser()->getId(); ?></td>
 			<td><?= $statistic->getWeight(); ?> kg</td>
-			<td><?= $statistic->getMuscleMass(); ?> %</td>
-			<td><?= $statistic->getBodyFat(); ?> %</td>
+			<td><?= $statistic->getMuscleMassPercentage(); ?> %</td>
+			<td><?= $statistic->getBodyFatPercentage(); ?> %</td>
 			<td><?= $statistic->getBodyWater(); ?> %</td>
 			<td>
 				<a href="/Statistic/delete/<?= $statistic->getId(); ?>">Delete</a>

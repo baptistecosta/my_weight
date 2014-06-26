@@ -2,6 +2,8 @@
 
 namespace MyWeight\Form;
 
+use DateTime;
+use Zend\Form\Element\Date;
 use Zend\Form\Form;
 
 class StatisticForm extends Form {
@@ -13,6 +15,24 @@ class StatisticForm extends Form {
 		$this->add([
 			'name' => 'id',
 			'type' => 'Hidden',
+		]);
+
+		// Date
+//		$date = new Date('created');
+//		$date->setValue(new DateTime());
+//		$date->setAttributes([
+//			'class' => 'form-control input-lg',
+//			'placeholder' => "Creation"
+//		]);
+//		$this->add($date);
+		$this->add([
+			'name' => 'created',
+			'type' => 'Date',
+			'attributes' => [
+				'value' => new DateTime(),
+				'class' => 'form-control input-lg',
+				'placeholder' => "Creation"
+			]
 		]);
 		$this->add([
 			'name' => 'weight',
@@ -52,10 +72,8 @@ class StatisticForm extends Form {
 			'attributes' => [
 				'value' => 'Go',
 				'id' => 'submitButton',
-			],
-			'attributes' => [
 				'class' => 'form-control btn-primary input-lg'
-			]
+			],
 		]);
 	}
 }

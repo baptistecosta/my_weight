@@ -16,7 +16,8 @@ return [
 				],
 				'MyWeight\Controller\Statistic' => [
 					'index' => 'admin',
-					'add' => 'registered'
+					'add' => 'registered',
+					'delete' => 'registered'
 				],
 				'Users\Controller\User' => [
 					'login' => 'guest',
