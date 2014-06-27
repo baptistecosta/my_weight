@@ -7,7 +7,7 @@ use Users\Entity\User;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Statistics")
+ * @ORM\Table(name="statistics")
  * @ORM\HasLifecycleCallbacks
  */
 class Statistic {

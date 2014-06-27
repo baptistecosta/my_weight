@@ -8,7 +8,7 @@ use Symfony\Component\Console\Application;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Users")
+ * @ORM\Table(name="users")
  * @ORM\HasLifecycleCallbacks
  */
 class User {
