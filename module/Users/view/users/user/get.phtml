@@ -31,7 +31,6 @@
 		</h2>
 		<table class="table table-hover table-responsive table-condensed">
 			<tr>
-				<th>ID</th>
 				<th>Date</th>
 				<th>Wkg</th>
 				<th>MM%</th>
@@ -39,21 +38,19 @@
 				<th>BF%</th>
 				<th>BFkg</th>
 				<th>BW%</th>
-				<th>Action</th>
 			</tr>
 			<?php foreach ($user->getStatistics() as $statistic) { ?>
 				<tr>
-					<td><?= $statistic->getId(); ?></td>
-					<td><?= $statistic->getDate()->format('d/m/Y'); ?></td>
+					<td><?= $statistic->getDate()->format('d/m'); ?></td>
 					<td><?= $statistic->getWeight(); ?></td>
 					<td><?= number_format($statistic->getMuscleMassPercentage(), 1); ?></td>
 					<td><?= number_format($statistic->getMuscleMass(), 1); ?></td>
 					<td><?= number_format($statistic->getBodyFatPercentage(), 1); ?></td>
 					<td><?= number_format($statistic->getBodyFat(), 1); ?></td>
 					<td><?= $statistic->getBodyWater(); ?></td>
-					<td>
-						<a href="/Statistic/delete/<?= $statistic->getId() ?>">Delete</a>
-					</td>
+<!--					<td>-->
+<!--						<a href="/Statistic/delete/--><?php //echo $statistic->getId() ?><!--">Delete</a>-->
+<!--					</td>-->
 				</tr>
 			<?php } ?>
 		</table>
