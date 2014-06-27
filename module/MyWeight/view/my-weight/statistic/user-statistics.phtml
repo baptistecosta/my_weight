@@ -1,0 +1,39 @@
+<?php $statisticsGroupByMonths = $this->MyTable()->groupByMonths($statistics, 'getDate'); ?>
+<?php foreach ($statisticsGroupByMonths as $statistics) { ?>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<span class="bold"><?= $statistics[0]->getDate()->format('F Y') ?></span>
+		</div>
+		<div class="panel-body">
+			<table class="table table-hover table-condensed">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Wkg</th>
+						<th>MM%</th>
+						<th>MMkg</th>
+						<th>BF%</th>
+						<th>BFkg</th>
+						<th>BW%</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($statistics as $statistic) { ?>
+						<tr>
+							<td><?= $statistic->getDate()->format('d/m'); ?></td>
+							<td><?= $statistic->getWeight(); ?></td>
+							<td><?= number_format($statistic->getMuscleMassPercentage(), 1); ?></td>
+							<td><?= number_format($statistic->getMuscleMass(), 1); ?></td>
+							<td><?= number_format($statistic->getBodyFatPercentage(), 1); ?></td>
+							<td><?= number_format($statistic->getBodyFat(), 1); ?></td>
+							<td><?= $statistic->getBodyWater(); ?></td>
+<!--							<td>-->
+<!--								<a href="/Statistic/delete/--><?php //echo $statistic->getId() ?><!--">Delete</a>-->
+<!--							</td>-->
+						</tr>
+					<?php } ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<?php } ?>

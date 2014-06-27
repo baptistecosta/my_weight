@@ -4,7 +4,6 @@ namespace MyWeight\Controller;
 
 use DateTime;
 use MyWeight\Filter\StatisticFilter;
-use Users\Entity\User;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use MyWeight\Entity\Statistic;
@@ -12,14 +11,19 @@ use MyWeight\Form\StatisticForm;
 
 class StatisticController extends AbstractActionController {
 
-	/** @deprecated */
-	protected $statisticTable;
-
 	protected $entityManager;
 
 	public function indexAction() {
 		return new ViewModel([
 			'statistics' => $this->getEntityManager()->getRepository('MyWeight\Entity\Statistic')->findAll()
+		]);
+	}
+
+	public function userStatisticsAction() {
+		$userId = $this->params('userId');
+		$statisticRepo = $this->getEntityManager()->getRepository('MyWeight\Entity\Statistic');
+		return new ViewModel([
+			'statistics' => $statisticRepo->findBy(['user' => $userId], ['date' => 'DESC'])
 		]);
 	}
 
@@ -73,14 +77,5 @@ class StatisticController extends AbstractActionController {
 			$this->entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 		}
 		return $this->entityManager;
-	}
-
-	/** @deprecated */
-	public function getStatisticTable() {
-		if (!$this->statisticTable) {
-			$sm = $this->getServiceLocator();
-			$this->statisticTable = $sm->get('MyWeight\Model\StatisticTable');
-		}
-		return $this->statisticTable;
 	}
 }

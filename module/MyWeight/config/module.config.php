@@ -34,11 +34,7 @@ return [
 					]
 				]
 			],
-			// The following is a route to simplify getting started creating
-			// new controllers and actions without needing to create a new
-			// module. Simply drop new controllers in, and you can access them
-			// using the path /application/:controller/:action
-			'my-weight' => [
+			'my_weight' => [
 				'type' => 'Literal',
 				'options' => [
 					'route' => '/my-weight',
@@ -63,7 +59,20 @@ return [
 					],
 				],
 			],
-		],
+			'user_statistics' => [
+				'type' => 'segment',
+				'options' => [
+					'route' => '/user-statistics/:userId',
+					'defaults' => [
+						'controller' => 'MyWeight\Controller\Statistic',
+						'action' => 'userStatistics',
+					],
+					'constraints' => [
+						'userId' => '[0-9]*'
+					],
+				]
+			]
+		]
 	],
 	'service_manager' => [
 		'abstract_factories' => [
@@ -99,6 +108,11 @@ return [
 		'template_path_stack' => [
 			__DIR__ . '/../view',
 		],
+	],
+	'view_helpers' => [
+		'invokables' => [
+			'MyTable' => 'MyWeight\View\Helper\MyTableHelper'
+		]
 	],
 	// Placeholder for console routes
 	'console' => [

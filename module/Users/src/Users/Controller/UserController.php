@@ -5,7 +5,6 @@ namespace Users\Controller;
 use Users\Entity\User as UserEntity;
 use Users\Filter\UserFilter;
 use Users\Form\UserForm;
-use Zend\Authentication\AuthenticationService;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerAwareInterface;
@@ -31,18 +30,17 @@ class UserController extends AbstractActionController {
 		$this->getEventManager()->trigger('get', null, ['userId' => $userId]);
 
 		// One way
-//		$user = $this->getEntityManager()->find('Users\Entity\User', $userId);
+		$user = $this->getEntityManager()->find('Users\Entity\User', $userId);
 
 		// Or another
-		$qb = $this->getEntityManager()->createQueryBuilder();
-		$qb->select('u');
-		$qb->from('Users\Entity\User', 'u');
-		$qb->leftJoin('MyWeight\Entity\Statistic', 's', 'WITH', 'u.id = s.user');
-		$qb->where('u.id = :userId');
-//		$qb->orderBy('s.date', 'DESC');
-		$qb->setParameter('userId', $userId);
-		$q = $qb->getQuery();
-		$user = $q->getSingleResult();
+//		$qb = $this->getEntityManager()->createQueryBuilder();
+//		$qb->select('u');
+//		$qb->from('Users\Entity\User', 'u');
+//		$qb->leftJoin('MyWeight\Entity\Statistic', 's', 'WITH', 'u.id = s.user');
+//		$qb->where('u.id = :userId');
+//		$qb->setParameter('userId', $userId);
+//		$q = $qb->getQuery();
+//		$user = $q->getSingleResult();
 
 		// Or another
 //		$user = $this
