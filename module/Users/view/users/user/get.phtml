@@ -22,7 +22,7 @@
 				<label>Email address</label>
 				<div class="input-group">
 					<input class="form-control input-sm" type="text" value="<?= $user->getEmailAddress(); ?>" disabled/>
-					<div class="input-group-addon"><a href="" class="glyphicon glyphicon-edit"></a></div>
+					<div class="input-group-addon"><a class="glyphicon glyphicon-edit"></a></div>
 				</div>
 			</div>
 		</div>
@@ -54,8 +54,8 @@
 						<tbody>
 						<?php foreach ($stats as $statistic) { ?>
 							<tr>
-								<td><?= $statistic->getDate()->format('d/m'); ?></td>
-								<td><?= $statistic->getWeight(); ?></td>
+								<td><?= $statistic->getDate()->format('d'); ?></td>
+								<td><?= number_format($statistic->getWeight(), 1); ?></td>
 								<td><?= number_format($statistic->getMuscleMassPercentage(), 1); ?></td>
 								<td><?= number_format($statistic->getMuscleMass(), 1); ?></td>
 								<td><?= number_format($statistic->getBodyFatPercentage(), 1); ?></td>

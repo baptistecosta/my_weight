@@ -18,7 +18,7 @@ class StatisticForm extends Form {
 		]);
 
 		// Date
-//		$date = new Date('created');
+//		$date = new \Zend\Form\Element\Date('created');
 //		$date->setValue(new DateTime());
 //		$date->setAttributes([
 //			'class' => 'form-control input-lg',
@@ -34,28 +34,31 @@ class StatisticForm extends Form {
 				'placeholder' => "Creation"
 			]
 		]);
-		$this->add([
-			'name' => 'weight',
-			'type' => 'Text',
-			'attributes' => [
-				'class' => 'form-control input-lg',
-				'placeholder' => "Weight (kg)"
-			]
+
+		$weight = new \Zend\Form\Element\Number('weight');
+		$weight->setAttributes([
+			'class' => 'form-control input-lg',
+			'placeholder' => "Weight (kg)",
+			'type' => 'number',
+			'step' => 0.1
 		]);
+		$this->add($weight);
 		$this->add([
 			'name' => 'muscleMass',
-			'type' => 'Text',
 			'attributes' => [
 				'class' => 'form-control input-lg',
-				'placeholder' => "Muscle Mass (%)"
+				'placeholder' => "Muscle Mass (%)",
+				'type' => 'number',
+				'step' => 0.1
 			]
 		]);
 		$this->add([
 			'name' => 'bodyFat',
-			'type' => 'Text',
 			'attributes' => [
 				'class' => 'form-control input-lg',
-				'placeholder' => "Body Fat (%)"
+				'placeholder' => "Body Fat (%)",
+				'type' => 'number',
+				'step' => 0.1
 			]
 		]);
 		$this->add([
@@ -63,7 +66,9 @@ class StatisticForm extends Form {
 			'type' => 'Text',
 			'attributes' => [
 				'class' => 'form-control input-lg',
-				'placeholder' => "Body Water (%)"
+				'placeholder' => "Body Water (%)",
+				'type' => 'number',
+				'step' => 0.1
 			]
 		]);
 		$this->add([
